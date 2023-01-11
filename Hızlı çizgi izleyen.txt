@@ -1,0 +1,40 @@
+python
+from js import robot
+import math
+
+robot.sleep(0.1)
+
+# Arda Anıl Şahin
+
+while robot.is_ok():
+    px_sayisi = 0
+    index = 0
+    sensor_data = robot.camera_pixel_array()
+    for i in range(0,len(sensor_data)):
+        if sensor_data[i] >  60:
+            px_sayisi += 1
+    if px_sayisi > 0:
+        if robot.time() > 27.5:
+            robot.move(6)
+        elif robot.time() > 29:
+            robot.move(0)
+        else:
+            robot.move(1)
+        for i in range(0,len(sensor_data)):
+            if sensor_data[i] == max(sensor_data):
+                index = i
+
+        hata = len(sensor_data)/2 - index
+        kp = 0.4
+        komut = hata  * kp
+        robot.rotate(komut)
+    else:
+        if robot.time() < 20 and robot.time() > 3:
+            robot.rotate(2)
+            robot.move(0.0)
+        elif robot.time() > 20:
+            robot.rotate(-2)
+            robot.move(0.1)
+        else:
+            robot.rotate(2)
+            robot.move(0.0)
