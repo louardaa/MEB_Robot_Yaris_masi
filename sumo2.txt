@@ -1,0 +1,112 @@
+
+
+from js import robot
+import math
+
+#Louardaa
+yon=1
+while robot.is_ok():
+    if robot.front() == 500:
+        robot.rotate(yon*7)
+        robot.move(0)
+    if robot.front() < 2:
+        robot.rotate(yon*0)
+        robot.move(2)
+
+    if robot.front() < 0.4:
+        robot.move(5)
+        robot.sleep(0.1)
+        if not robot.front () < 0.4:
+            robot.move(-1)
+            robot.rotate(2)
+    if robot.left() < 0.4:
+        yon=1
+        robot.rotate(yon*6)
+        if not robot.left() < 0.4:
+            robot.move(0)
+            robot.rotate(0) 
+    if robot.right() < 0.4:
+        yon=-1
+        robot.rotate(yon*6)
+        if not robot.right() < 0.4:
+            robot.move(0)
+            obot.rotate(0) 
+    
+    if robot.front_left_color() == 1:
+        robot.move(-1)
+        robot.sleep(0.2)
+        robot.rotate(7)
+        robot.move(0)
+
+    if robot.front_right_color() == 1:
+        robot.move(-1)
+        robot.sleep(0.2)
+        robot.rotate(7)
+        robot.move(0)
+
+    if robot.back_left_color() == 1 or robot.back_right_color() == 1:
+        robot.move(5)
+        robot.sleep(0.3)
+        robot.rotate(7)
+        robot.move(0)
+    
+
+while robot.is_ok():
+    print(robot.right())
+    #Döndürme
+    if robot.front() == 500 and robot.back() == 500 and robot.left() == 500 and robot.right() == 500: 
+        robot.rotate(5)
+
+    if robot.front() < 1.0:
+        robot.move(19)
+        robot.sleep(0.3)
+        if robot.front() >= 500:
+            robot.rotate(0)
+        robot.move(0.5)
+
+    if robot.front() < 2.0:
+        robot.move(4.1)
+        robot.sleep(0.3)
+        if robot.front() >= 500:
+            robot.rotate(0)
+        robot.move(0.5)
+
+    if robot.front() > 2.0 and robot.front() < 5.0:
+        robot.move(3)
+        robot.sleep(0.2)
+        if robot.front() >= 500:
+            robot.rotate(0)
+        robot.move(0.5)
+
+    if robot.left() < 1.0:
+        robot.move(0)
+        robot.rotate(5)
+
+    if robot.right() < 1.0:
+        robot.move(0)
+        robot.rotate(5)
+
+    if robot.back() < 1.0:
+        robot.move(0)
+        robot.rotate(5)
+
+    #Beyaz Çizgi
+    if robot.front_left_color() == 1 or robot.front_right_color() == 1:
+        robot.move(-1.010)
+        robot.sleep(0.5)
+
+    if robot.back_left_color() == 1 or robot.back_right_color() == 1:
+        robot.move(1)
+        robot.sleep(0.5)
+
+
+# Robot Boyutu
+
+                              # min     max
+robot.body_width(0.04)        # 0.05    0.10 - Genislik
+robot.body_height(0.04)       # 0.05    0.10 - Yukseklik
+robot.body_length(0.04)       # 0.05    0.20 - Uzunluk
+robot.wheel_radius(0.025)      # 0.01    0.04 - Teker Capi
+robot.wheel_thickness(0.019)   # 0.01    0.04 - Teker Kalinligi
+robot.bumper_radius(0.014)    # 0.015   0.05 - Tampon Capi
+robot.bumper_length(0.9)      # 0.02    0.18 - Tampon Uzunlugu
